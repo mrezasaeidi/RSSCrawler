@@ -20,11 +20,11 @@ object StaticRepository {
     fun addFeed(feed: Feed): Feed {
         feed.id = ++feedId
         feeds.add(feed)
-        fetchNews()
         return feed
     }
 
     fun getNews(limit: Int?): List<News> {
+        fetchNews()
         val allNews = ArrayList<News>()
         news.values.forEach {
             allNews.addAll(it)
@@ -32,7 +32,7 @@ object StaticRepository {
         return if (limit == null) {
             allNews.sortedBy { it.date }
         } else {
-            allNews.sortedBy { it.date }.subList(0, limit)
+            allNews.sortedBy { it.date }.subList(0, if (limit < 0) 0 else limit)
         }
     }
 
