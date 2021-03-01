@@ -7,4 +7,4 @@ data class FeedCreateDto(
     val url: String
 )
 
-fun FeedCreateDto.to() = FeedDocument(null, name, url)
+fun FeedCreateDto.to() = FeedDocument(name = name, url = url)

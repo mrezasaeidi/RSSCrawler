@@ -1,7 +1,7 @@
 package com.aria.dto
 
 data class NewsDto(
-    val id: Long,
+    val id: Long?,
     val feedId: Long,
     val title: String,
     val link: String,

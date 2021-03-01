@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 @Document("news")
 class NewsDocument(
     @Id
-    val id: Long,
+    val id: Long? = null,
     val feedId: Long,
     val title: String,
     val link: String,

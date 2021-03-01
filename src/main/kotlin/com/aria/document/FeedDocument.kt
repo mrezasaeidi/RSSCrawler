@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 @Document("feed")
 class FeedDocument(
     @Id
-    var id: Long,
+    var id: Long? = null,
     val name: String,
     val url: String
 ) {

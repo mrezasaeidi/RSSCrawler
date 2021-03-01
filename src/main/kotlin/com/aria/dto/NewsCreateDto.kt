@@ -10,4 +10,10 @@ data class NewsCreateDto(
     val date: Long
 )
 
-fun NewsCreateDto.to() = NewsDocument(null, feedId, title, link, description, date)
+fun NewsCreateDto.to() = NewsDocument(
+    feedId = feedId,
+    title = title,
+    link = link,
+    description = description,
+    date = date
+)

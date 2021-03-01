@@ -65,7 +65,7 @@ class DataBaseService @Autowired constructor(
                 }
                 newsList.add(
                     NewsCreateDto(
-                        feed.id,
+                        feed.id!!,
                         newsOb.optString("title"),
                         newsOb.optString("link"),
                         newsOb.optString("description"),
