@@ -1,7 +1,8 @@
-package com.aria.entity
+package com.aria.dto
 
-data class News(
-    val id: Int,
+data class NewsDto(
+    val id: Long,
+    val feedId: Long,
     val title: String,
     val link: String,
     val description: String,

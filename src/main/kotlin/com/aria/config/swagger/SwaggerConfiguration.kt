@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.util.StringUtils
 
 @Configuration
-class OpenApiConfig {
+class SwaggerConfiguration {
     @Bean
     fun customOpenAPI(): OpenAPI {
         val securitySchemeName = "Authorization"
