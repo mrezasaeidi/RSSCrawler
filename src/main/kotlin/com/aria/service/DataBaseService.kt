@@ -1,8 +1,6 @@
 package com.aria.service
 
 import com.aria.dto.*
-import com.aria.repository.FeedRepository
-import com.aria.repository.NewsRepository
 import com.aria.util.HttpUtil
 import org.json.XML
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,21 +12,17 @@ import kotlin.collections.ArrayList
 
 @Service
 class DataBaseService @Autowired constructor(
-    private val newsRepository: NewsRepository,
-    private val feedRepository: FeedRepository
+    private val newsService: NewsService,
+    private val feedService: FeedService
 ) {
     fun addFeed(feed: FeedCreateDto): FeedDto {
-        return feedRepository.save(feed.to()).toDto().apply {
+        return feedService.add(feed.to()).toDto().apply {
             refreshNews(this)
         }
     }
 
-    fun getAllFeeds(): List<FeedDto> {
-        return feedRepository.findAll().map { it.toDto() }
-    }
-
     fun getAllNews(limit: Int?): List<NewsDto> {
-        val allNews = newsRepository.findAll().map { it.toDto() }.sortedBy { it.date }
+        val allNews = newsService.getAll()
         limit ?: return allNews
         return allNews.subList(0, if (limit < 0) 0 else limit)
     }
@@ -37,14 +31,14 @@ class DataBaseService @Autowired constructor(
         val news = addedFeed?.let {
             fetchNews(it)
         } ?: run {
-            newsRepository.deleteAll()
+            newsService.deleteAll()
             val newsList = ArrayList<NewsCreateDto>()
-            getAllFeeds().forEach { feed ->
+            feedService.getAll().forEach { feed ->
                 newsList.addAll(fetchNews(feed))
             }
             newsList
         }
-        newsRepository.saveAll(news.map { it.to() })
+        newsService.addAll(news.map { it.to() })
     }
 
     private fun fetchNews(feed: FeedDto): List<NewsCreateDto> {

@@ -3,7 +3,7 @@ package com.aria.dto
 import com.aria.document.NewsDocument
 
 data class NewsCreateDto(
-    val feedId: Long,
+    val feedId: String,
     val title: String,
     val link: String,
     val description: String,

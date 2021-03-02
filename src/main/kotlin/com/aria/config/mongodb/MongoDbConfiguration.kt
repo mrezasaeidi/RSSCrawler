@@ -15,7 +15,7 @@ class MongoDbConfiguration {
 
     companion object {
         private const val DB_NAME = "rss_news"
-        private const val URI = "localhost:27017"
+        private const val URI = "mongodb://localhost:27017"
         private const val USERNAME = "admin"
         private const val PASSWORD = "admin"
     }
@@ -25,7 +25,7 @@ class MongoDbConfiguration {
     fun mongoDbFactory() = SimpleMongoClientDatabaseFactory(
         MongoClientImpl(
             MongoClientSettings.builder()
-                .credential(MongoCredential.createCredential(USERNAME, DB_NAME, PASSWORD.toCharArray()))
+                .credential(MongoCredential.createCredential(USERNAME, "admin", PASSWORD.toCharArray()))
                 .applyConnectionString(ConnectionString(URI))
                 .build(),
             null
