@@ -1,5 +1,5 @@
 # Rss Crawler
-This Application provides two APIs (within Spring Bot Framework) which are used to retrieve news from news agencies using RSS protocol.
+This Application provides two APIs (within Spring Boot Framework) which are used to retrieve news from news agencies using RSS protocol.
  ## Adding Feed
 You can add Feed by using POST method and send a name and a link. this link must be owned by a news agency like yahoo, BBC, etc. (e.g: https://sports.yahoo.com/sc/rss.xml)
 
